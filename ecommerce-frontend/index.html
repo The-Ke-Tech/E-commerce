@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEasy – Best Deals in Nairobi</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+    <section class="hero">
+      <h1>Best Deals in Nairobi</h1>
+      <p>Quality products delivered fast. Shop now and save!</p>
+      <a href="shop.html"><button>Shop Now</button></a>
+    </section>
+
+    <section class="featured">
+      <h2>Featured Products</h2>
+      <div id="featured-grid" class="product-grid"></div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Cart Modal Container -->
+  <div id="cart-modal" class="modal">
+    <div id="cart-modal-placeholder"></div>
+  </div>
+
+  <script type="module" src="js/loader.js"></script>
+  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/products.js"></script>
+  <script type="module" src="js/main.js"></script>
+
+  <script>
+  // Wait longer for dynamic content + run repeatedly if needed
+  function tryAttachCart() {
+    const icon = document.getElementById('cart-icon');
+    const modal = document.getElementById('cart-modal');
+    
+    if (icon && modal) {
+      icon.addEventListener('click', () => {
+        updateCartDisplay();           // refresh content
+        modal.style.display = 'flex';
+        console.log('Cart modal opened');
+      });
+      console.log('Cart icon listener attached');
+    } else {
+      // Retry in 300ms if not ready yet
+      setTimeout(tryAttachCart, 300);
+    }
+  }
+
+  // Call once DOM is ready + after loader
+  document.addEventListener('DOMContentLoaded', tryAttachCart);
+  setTimeout(tryAttachCart, 1800);  // safety fallback
+</script>
+</body>
+</html>
